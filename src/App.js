@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NavBar from "./components/navbar";
 import Products from "./components/products";
 import Form from "./components/form";
+import Footer from "./components/footer";
 //import logo from './logo.svg';
 //mport './App.css';
 
@@ -64,7 +65,7 @@ class App extends Component {
           <Form id={this.state.length} onSubmit={this.handleSubmit}></Form>
         </div>
         </div>
-        <footer>Footer</footer>
+        <Footer nbproduits={this.state.list.length}/>
       </React.Fragment>
     );
   }
