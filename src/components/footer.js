@@ -1,6 +1,6 @@
 import React from "react";
 
-const Footer = ({ nbproduits }) => {
+const Footer = ({ nbproduits, total }) => {
   return (
     <React.Fragment>
       <footer className="navbar navbar-light bg-light">
@@ -9,7 +9,7 @@ const Footer = ({ nbproduits }) => {
             Retour vers le haut de page
         </a>
         <span className="badge badge-pill badge-secondary" id="bas">
-            Nombre de produits : {nbproduits}
+            Nombre de produits : {nbproduits} Total : {total}
         </span>
         </div>
       </footer>

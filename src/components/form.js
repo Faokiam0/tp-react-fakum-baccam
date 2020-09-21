@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Form extends Component {
   constructor(props) {
     super(props);
-    this.state = { id: props, name: "", value: "" };
+    this.state = { id: this.props.id, name: "", value: 0, price: 0};
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -19,9 +19,9 @@ class Form extends Component {
 
   render() {
     const buttonClass = "btn  btn-secondary";
-    const group = "form-group mx-2";
-    const control = "from-control";
-    const label = "mx-2";
+    const group = "form-group col-3 mr-2";
+    const control = "form-control";
+    const label = "mr-2";
     return (
       <div className="row my-3">
         <form className="form-inline">
@@ -36,7 +36,7 @@ class Form extends Component {
             />
           </div>
           <div className={group}>
-            <label className={label}>Nombre d'article :</label>
+            <label className={label}>Quantité :</label>
             <input
               className={control}
               type="number"
@@ -45,8 +45,19 @@ class Form extends Component {
               onChange={this.handleChange}
             />
           </div>
+          <div className={group}>
+            <label className={label}>Prix :</label>
+            <input
+              className={control}
+              type="number"
+              name="price"
+              value={this.state.price}
+              onChange={this.handleChange}
+              step='0.01'
+            />
+          </div>
         </form>
-        <div>
+        <div className="col-1">
           <button
             className={buttonClass}
             onClick={() =>
@@ -54,13 +65,15 @@ class Form extends Component {
                 id: this.state.id,
                 name: this.state.name,
                 value: this.state.value,
+                price: this.state.price
               })
             }
           >
-            Envoyer
+            Ajouter
           </button>
-        </div>
+          </div>
       </div>
+      
     );
   }
 }

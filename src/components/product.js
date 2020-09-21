@@ -8,12 +8,13 @@ class Product extends Component {
       <React.Fragment>
         <div className="row">
           <div className="col-6">
-            <div className="d-flex flex-row">
-              <p>{this.props.product.name}</p>
+            <div className="row">
+              <b className="mx-3">{this.props.product.name}</b>
+              <p>{this.props.product.price} €</p>
             </div>
           </div>
           <div className="col-1">
-            <div className="d-flex flex-row">
+            <div className="row">
               <p>{this.props.product.value}</p>
             </div>
           </div>

@@ -9,14 +9,20 @@ import Footer from "./components/footer";
 class App extends Component {
   state = {
     list: [
-      { id: 1, name: "T-shirt Noir", value: 1 },
-      { id: 2, name: "Jeans", value: 1 },
+      { id: 1, name: "T-shirt Noir", value: 1 , price:2},
+      { id: 2, name: "Jeans", value: 1 , price:10},
     ],
   };
 
   constructor() {
-    super()
-    this.handleSubmit = this.handleSubmit.bind(this)
+    super();
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  getTotal = () => {
+    let tmp = 0;
+    this.state.list.forEach((product) => {tmp += product.value * product.price})
+    return tmp;
   }
 
   handleIncrement = (product) => {
@@ -41,9 +47,6 @@ class App extends Component {
   };
 
   handleSubmit(product) {
-    //alert('L\'article a été soumis : ' + product.value);
-    console.log(this.state)
-    
     const tab = this.state.list;
     tab.push(product);
     this.setState({list: tab})
@@ -52,7 +55,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <NavBar nbproduits={this.state.list.length} />
+        <NavBar nbproduits={this.state.list.length} total={this.getTotal()}/>
         <div className="container my-5">
           
         <div className="col-10 offset-1">
@@ -62,10 +65,10 @@ class App extends Component {
             onDecrement={this.handleDecrement}
             onDelete={this.handleDelete}
           />
-          <Form id={this.state.length} onSubmit={this.handleSubmit}></Form>
         </div>
+        <Form key="form" id={this.state.list.length+1} onSubmit={this.handleSubmit}></Form>
         </div>
-        <Footer nbproduits={this.state.list.length}/>
+        <Footer nbproduits={this.state.list.length} total={this.getTotal()}/>
       </React.Fragment>
     );
   }
