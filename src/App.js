@@ -1,8 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import NavBar from './components/navbar';
+//import logo from './logo.svg';
+//mport './App.css';
 
-function App() {
+class App extends Component {
+  state = {
+    list: [
+      {id: 1, name: "T-shirt Noir", value:1},
+      {id: 2, name: "Jeans", value:1},
+    ]
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <NavBar nbproduits={this.state.list.length}/>
+        <div>Div</div>
+        <footer>Footer</footer>
+      </React.Fragment>
+    );
+  }
+}
+
+/*
+function App0() {
   return (
     <div className="App">
       <header className="App-header">
@@ -22,5 +43,5 @@ function App() {
     </div>
   );
 }
-
+*/
 export default App;
