@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NavBar from "./components/navbar";
 import Products from "./components/products";
+import Form from "./components/form";
 //import logo from './logo.svg';
 //mport './App.css';
 
@@ -11,6 +12,11 @@ class App extends Component {
       { id: 2, name: "Jeans", value: 1 },
     ],
   };
+
+  constructor() {
+    super()
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
 
   handleIncrement = (product) => {
     const tab = this.state.list;
@@ -33,45 +39,35 @@ class App extends Component {
     this.setState({ list: tab });
   };
 
+  handleSubmit(product) {
+    //alert('L\'article a été soumis : ' + product.value);
+    console.log(this.state)
+    
+    const tab = this.state.list;
+    tab.push(product);
+    this.setState({list: tab})
+  }
+
   render() {
     return (
       <React.Fragment>
         <NavBar nbproduits={this.state.list.length} />
-        <div className="container">
+        <div className="container my-5">
+          
+        <div className="col-10 offset-1">
           <Products
             list={this.state.list}
             onIncrement={this.handleIncrement}
             onDecrement={this.handleDecrement}
             onDelete={this.handleDelete}
           />
+          <Form id={this.state.length} onSubmit={this.handleSubmit}></Form>
         </div>
-        
+        </div>
         <footer>Footer</footer>
       </React.Fragment>
     );
   }
 }
 
-/* Par défaut
-function App0() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-*/
 export default App;
